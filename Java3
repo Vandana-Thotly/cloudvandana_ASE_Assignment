@@ -1,0 +1,36 @@
+//Pangram or not
+package dataStructures;
+
+import java.util.Scanner;
+
+public class PangramOrNot {
+    public static void main(String[] args) {
+        //String input = "The quick brown fox jumps over the lazy dog";
+    	Scanner sc=new Scanner(System.in);
+    	String input=sc.nextLine();
+        boolean isPangram = checkIfPangram(input);
+        
+        if (isPangram) {
+            System.out.println("The input is a pangram.");
+        } else {
+            System.out.println("The input is not a pangram.");
+        }
+    }
+
+    public static boolean checkIfPangram(String input) {
+        boolean[] alphabetPresence = new boolean[26];
+        int alphabetCount = 0;
+        
+        for (char ch : input.toLowerCase().toCharArray()) {
+            if (Character.isLetter(ch)) {
+                int index = ch - 'a';
+                if (!alphabetPresence[index]) {
+                    alphabetPresence[index] = true;
+                    alphabetCount++;
+                }
+            }
+        }
+
+        return alphabetCount == 26;
+    }
+}
